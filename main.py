@@ -23,27 +23,16 @@ def recipe_content(category, recipe):
     file.close()
     return content
 
-def select_category(categories):
-    for index, category in enumerate(categories):
-        print(f"{index+1}: {category}")
+def select_option(options):
+    for index, option in enumerate(options):
+        print(f"{index+1}: {option}")
             
-    categorySelected = -1
-    while categorySelected < 0 or categorySelected > len(categories):
-        categorySelected = int(input("Seleccione el número de una categoría: "))
-        categorySelected -= 1
+    optionSelected = -1
+    while optionSelected < 0 or optionSelected > len(options):
+        optionSelected = int(input("Seleccione una opción: "))
+        optionSelected -= 1
 
-    return categorySelected
-
-def select_recipe(recipes):
-    for index, recipe in enumerate(recipes):
-        print(f"{index+1}: {recipe}")
-            
-    recipeSelected = -1
-    while recipeSelected < 0 or recipeSelected > len(recipes):
-        recipeSelected = int(input("Seleccione el número de una receta: "))
-        recipeSelected -= 1
-    
-    return recipeSelected
+    return optionSelected
 
 def create_category(new_category):
     mkdir(work_directory / "recetas" / new_category)
@@ -97,13 +86,13 @@ while True :
             print("Categorías")
             print("--------------------")
             
-            categorySelected = select_category(categories)
+            categorySelected = select_option(categories)
 
             print(f"Recetas de la categoría {categories[categorySelected]}")
             print("--------------------")
             
             recipes = get_recipes(categories[categorySelected])
-            recipeSelected = select_recipe(recipes)
+            recipeSelected = select_option(recipes)
 
             print(f"Las instrucciones de la receta {recipes[recipeSelected]} son:")
             print(recipe_content(categories[categorySelected], recipes[recipeSelected]+".txt"))
@@ -113,7 +102,7 @@ while True :
             print("Categorías")
             print("--------------------")
             
-            categorySelected = select_category(categories)
+            categorySelected = select_option(categories)
 
             recipe_name = input("Introduzca el nombre de la nueva receta: ")
             content = input("Introduzca los pasos de la receta: ")
@@ -128,13 +117,13 @@ while True :
             print("Categorías")
             print("--------------------")
             
-            categorySelected = select_category(categories)
+            categorySelected = select_option(categories)
 
             print(f"Recetas de la categoría {categories[categorySelected]}")
             print("--------------------")
             
             recipes = get_recipes(categories[categorySelected])
-            recipeSelected = select_recipe(recipes)
+            recipeSelected = select_option(recipes)
 
             remove_recipe(categories[categorySelected], recipes[recipeSelected])
 
@@ -142,7 +131,7 @@ while True :
             categories = get_categories()
             print("Categorías")
             print("--------------------")
-            categorySelected = select_category(categories)
+            categorySelected = select_option(categories)
 
             delete_category(categories[categorySelected])
         case 6:
